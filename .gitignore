@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+.Python
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Outputs
+processed/
+*.json
+*.csv
+
+# Local models and weights
+*.pt
+*.onnx
+*.engine
+
+# Videos and large media
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.jpg
+*.jpeg
+*.png
+
+# Keep one chosen demo video later if needed
+#!demo_video.mp4
+#!demo_video.mov
+
+# Research / writing files not needed for runtime
+*.tex
+*.bib
+*.pdf
+article_recherche_brouillon.md
+brouillon_avancement.md
+compte_rendu_pipeline.md
+
+# Keep only the runtime README
+*.md
+!README.md
