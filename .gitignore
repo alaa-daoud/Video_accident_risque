@@ -36,8 +36,7 @@ processed/
 *.png
 
 # Keep one chosen demo video later if needed
-#!demo_video.mp4
-#!demo_video.mov
+!v4.mov
 
 # Research / writing files not needed for runtime
 *.tex
