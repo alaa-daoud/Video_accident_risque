@@ -9,7 +9,6 @@ WINDOW_NAME = "Processed traffic video"
 INFO_WINDOW_NAME = "Vehicle data"
 
 
-# Arguments.
 def parse_args():
     parser = argparse.ArgumentParser(description="Viewer fluide d'une video deja traitee.")
     parser.add_argument("--video", required=True, help="Chemin vers la video.")
@@ -18,7 +17,6 @@ def parse_args():
     return parser.parse_args()
 
 
-# Display helpers.
 def format_value(value, suffix="", digits=1):
     if value is None:
         return "?"
@@ -50,7 +48,6 @@ def get_vehicle_status(vehicle):
     return "moving"
 
 
-# Video drawing.
 def draw_vehicle_boxes(frame, vehicles, selected_vehicle_id):
     for vehicle in vehicles:
         x1, y1, x2, y2 = vehicle["box"]
@@ -209,7 +206,6 @@ def show_vehicle_data_window(vehicle):
     cv2.imshow(INFO_WINDOW_NAME, data_image)
 
 
-# Mouse interaction.
 def select_vehicle_from_click(x, y, vehicles):
     for vehicle in vehicles:
         x1, y1, x2, y2 = vehicle["box"]
@@ -228,7 +224,6 @@ def mouse_callback(event, x, y, flags, state):
     state["selected_vehicle_id"] = select_vehicle_from_click(original_x, original_y, state["vehicles"])
 
 
-# Main viewer loop.
 def main():
     args = parse_args()
     data = json.loads(open(args.data, encoding="utf-8").read())
@@ -249,6 +244,7 @@ def main():
     cv2.moveWindow(WINDOW_NAME, 40, 40)
 
     frame_index = 0
+    paused = False
     while True:
         ok, frame = cap.read()
         if not ok or frame_index >= len(frames_data):
@@ -267,11 +263,13 @@ def main():
         frame = resize_for_display(frame, args.display_width)
         cv2.imshow(WINDOW_NAME, frame)
 
-        key = cv2.waitKey(delay_ms) & 0xFF
+        key = cv2.waitKey(0 if paused else delay_ms) & 0xFF
         if key == ord("q"):
             break
-
-        frame_index += 1
+        if key == ord(" "):
+            paused = not paused
+        if not paused or key == ord("n"):
+            frame_index += 1
 
     cap.release()
     cv2.destroyAllWindows()

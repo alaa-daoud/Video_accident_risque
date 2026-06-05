@@ -15,9 +15,12 @@ env/
 Thumbs.db
 .DS_Store
 
-# Outputs
+# Generated data
 processed/
-*.json
+dashboard_*.html
+window_features_*.json
+explanations_*.json
+boite_noire_*.json
 *.csv
 
 # Local models and weights
@@ -27,6 +30,7 @@ processed/
 
 # Videos and large media
 *.mp4
+*.webm
 *.mov
 *.avi
 *.mkv
@@ -35,8 +39,9 @@ processed/
 *.jpeg
 *.png
 
-# Keep one chosen demo video later if needed
+# Demo inputs kept in the repository
 !v4.mov
+!v5.mov
 
 # Research / writing files not needed for runtime
 *.tex
@@ -45,7 +50,3 @@ processed/
 article_recherche_brouillon.md
 brouillon_avancement.md
 compte_rendu_pipeline.md
-
-# Keep only the runtime README
-*.md
-!README.md
