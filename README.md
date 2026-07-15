@@ -3,7 +3,16 @@
 ## Installation
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+```
+
+The dependency pins are compatible with recent Python releases such as Python 3.13.
+If installation on Windows fails while building NumPy from source, upgrade `pip` first and
+use the `python -m pip ...` form so that pip can select the prebuilt NumPy wheel:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ## Preprocess a video
