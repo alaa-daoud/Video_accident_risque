@@ -523,7 +523,7 @@ def extract_frame_data(
     vehicles = []
 
     if boxes is None or len(boxes) == 0 or boxes.id is None:
-        return vehicles
+        return vehicles, []
 
     for box, cls_tensor, conf_tensor, id_tensor in zip(boxes.xyxy, boxes.cls, boxes.conf, boxes.id):
         class_id = int(cls_tensor.item())
